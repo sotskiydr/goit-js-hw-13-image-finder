@@ -1,0 +1,33 @@
+{{#each hits}}
+<li class='gallery-item'>
+  <div class="photo-card">
+    <img class='picture' src="{{webformatURL}}" alt="{{id}}" />
+  <ul class='description-list'>
+    <li class='description-item'>
+      <p class="stats-item">
+        <i class="material-icons">thumb_up</i>
+        {{likes}}
+      </p>
+    </li>
+    <li class='description-item'>
+      <p class="stats-item">
+        <i class="material-icons">visibility</i>
+        {{views}}
+      </p>
+    </li>
+    <li class='description-item'>
+      <p class="stats-item">
+        <i class="material-icons">comment</i>
+        {{comments}}
+      </p>
+    </li>
+    <li class='description-item'>
+      <p class="stats-item">
+        <i class="material-icons">cloud_download</i>
+        {{downloads}}
+      </p>
+    </li>
+  </ul>
+  </div>
+</li>
+{{/each}}
