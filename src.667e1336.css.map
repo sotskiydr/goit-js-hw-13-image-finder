@@ -1,1 +1,0 @@
-{"version":3,"sources":["sass/pageOne.scss"],"names":[],"mappings":"AAAA,GACE,YAAA,CACA,eAAA,CACA,SAAA,CACA,QAAA,CACA","file":"src.667e1336.css","sourceRoot":"../src","sourcesContent":["h1{\n  color:tomato;\n  font-size: 500px;\n  padding: 0;\n  margin: 0;\n  text-align: center;\n}"]}
