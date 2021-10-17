@@ -6,13 +6,17 @@ const refs = {
   form : document.querySelector('.search-form'),
   gallery : document.querySelector('.gallery'),
   loadMoreBtn : document.querySelector('.more'),
-  body : document.querySelector('body')
+  body : document.querySelector('body'),
+  modalWindow : document.querySelector('.lightbox'),
+  modalWindowOverlay : document.querySelector('.lightbox__overlay'),
+  modalImage : document.querySelector('.lightbox__image')
 }
 
 const API = new apiService();
 
 refs.form.addEventListener('submit' , onSearchPicture);
-refs.loadMoreBtn.addEventListener('click' , onLoadMore)
+refs.loadMoreBtn.addEventListener('click' , onLoadMore);
+refs.gallery.addEventListener('click' , onClickPicture);
 
 function onSearchPicture (e){
   e.preventDefault();
@@ -43,4 +47,31 @@ function handleButtonClick() {
     behavior: 'smooth',
     block: 'end',
   });
+}
+
+function onClickPicture (e){
+  if(!e.target.classList.contains('picture')){
+    return
+  }
+  const elem = e.target.getAttribute('large-image');
+  onOpenModalWindow(elem)
+  onCloseModalWindow();
+}
+
+function onOpenModalWindow (data){
+  refs.modalWindow.classList.add('is-open');
+  refs.modalImage.src = data;
+}
+
+function onCloseModalWindow (){
+  refs.modalWindowOverlay.addEventListener('click' , () => {
+    refs.modalWindow.classList.remove('is-open')
+    refs.modalImage.src = '';
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      refs.modalWindow.classList.remove('is-open');
+      refs.modalImage.src = '';
+    }
+  })
 }

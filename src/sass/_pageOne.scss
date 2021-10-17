@@ -5,10 +5,10 @@
 }
 
 .search-form {
-  width: 50%;
+  width: 1170px;
   height: 40px;
   display: flex;
-  margin: 0 auto;
+  margin: 30px auto 0;
 }
 .input {
   width: 100%;
@@ -16,7 +16,7 @@
   outline: none;
   border: 2px solid black;
   border-radius: 10px;
-  padding: 0 15px;
+  text-align: center;
   &::placeholder {
     text-align: center;
     color: black;
@@ -45,7 +45,8 @@
   border: 2px solid black;
 }
 .more {
+  left: auto;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 40px;
   height: 40px;
 }
