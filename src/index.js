@@ -30,7 +30,7 @@ function onSearchPicture (e){
 
 function onLoadMore (){
   API.fetchImg().then(onRenderMarkup)
-  setTimeout(handleButtonClick,150)
+  setTimeout(handleButtonClick,200)
 }
 
 function onRenderMarkup (imgCard){
@@ -43,7 +43,8 @@ function onClearMarkup () {
 }
 
 function handleButtonClick() {
-  refs.body.scrollIntoView({
+  const element = refs.gallery.lastElementChild;
+  element.scrollIntoView({
     behavior: 'smooth',
     block: 'end',
   });
