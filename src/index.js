@@ -31,7 +31,7 @@ function onSearchPicture (e){
 
 function onLoadMore (){
   API.fetchImg().then(onRenderMarkup)
-  setTimeout(handleButtonClick,200)
+  setTimeout(handleButtonClick,750)
 }
 
 function onRenderMarkup (imgCard){
