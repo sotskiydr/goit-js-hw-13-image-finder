@@ -5,7 +5,8 @@ import apiService from './js/apiService'
 const refs = {
   form : document.querySelector('.search-form'),
   gallery : document.querySelector('.gallery'),
-  loadMoreBtn : document.querySelector('.more')
+  loadMoreBtn : document.querySelector('.more'),
+  body : document.querySelector('body')
 }
 
 const API = new apiService();
@@ -25,7 +26,7 @@ function onSearchPicture (e){
 
 function onLoadMore (){
   API.fetchImg().then(onRenderMarkup)
-  setTimeout(handleButtonClick,250)
+  setTimeout(handleButtonClick,150)
 }
 
 function onRenderMarkup (imgCard){
@@ -38,8 +39,7 @@ function onClearMarkup () {
 }
 
 function handleButtonClick() {
-  const element = document.querySelector('body');
-  element.scrollIntoView({
+  refs.body.scrollIntoView({
     behavior: 'smooth',
     block: 'end',
   });
