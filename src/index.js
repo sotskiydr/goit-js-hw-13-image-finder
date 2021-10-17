@@ -25,6 +25,7 @@ function onSearchPicture (e){
   API.resetPage();
   API.fetchImg().then(onRenderMarkup);
   refs.form.reset();
+  refs.loadMoreBtn.style.display = 'block';
 }
 
 
