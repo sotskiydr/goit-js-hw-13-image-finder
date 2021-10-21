@@ -1,16 +1,7 @@
 import './sass/main.scss';
 import pictureMarkup from './templates/markup-pictures.hbs'
 import apiService from './js/apiService'
-
-const refs = {
-  form : document.querySelector('.search-form'),
-  gallery : document.querySelector('.gallery'),
-  loadMoreBtn : document.querySelector('.more'),
-  body : document.querySelector('body'),
-  modalWindow : document.querySelector('.lightbox'),
-  modalWindowOverlay : document.querySelector('.lightbox__overlay'),
-  modalImage : document.querySelector('.lightbox__image')
-}
+import refs from './js/refs.js'
 
 const API = new apiService();
 
@@ -31,7 +22,7 @@ function onSearchPicture (e){
 
 function onLoadMore (){
   API.fetchImg().then(onRenderMarkup)
-  setTimeout(handleButtonClick,750)
+  setTimeout(handleButtonClick,500)
 }
 
 function onRenderMarkup (imgCard){
