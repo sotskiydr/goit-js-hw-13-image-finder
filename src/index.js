@@ -6,7 +6,6 @@ import refs from './js/refs.js'
 const API = new apiService();
 
 refs.form.addEventListener('submit' , onSearchPicture);
-refs.loadMoreBtn.addEventListener('click' , onLoadMore);
 refs.gallery.addEventListener('click' , onClickPicture);
 
 function onSearchPicture (e){
@@ -16,13 +15,6 @@ function onSearchPicture (e){
   API.resetPage();
   API.fetchImg().then(onRenderMarkup);
   refs.form.reset();
-  refs.loadMoreBtn.style.display = 'block';
-}
-
-
-function onLoadMore (){
-  API.fetchImg().then(onRenderMarkup)
-  setTimeout(handleButtonClick,500)
 }
 
 function onRenderMarkup (imgCard){
@@ -32,14 +24,6 @@ function onRenderMarkup (imgCard){
 
 function onClearMarkup () {
   refs.gallery.innerHTML = '';
-}
-
-function handleButtonClick() {
-  const element = refs.gallery.lastElementChild;
-  element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
 }
 
 function onClickPicture (e){
@@ -68,3 +52,26 @@ function onCloseModalWindow (){
     }
   })
 }
+
+function observer() {
+  const options = {
+    rootMargin: '100px',
+  };
+  const observer = new IntersectionObserver(callback, options);
+
+  function callback(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && API.value !== '') {
+        if(API.page > 41){
+          API.onError(`No more data for '${API.value}'`);
+          return
+        }
+        API.fetchImg().then(onRenderMarkup);
+        API.incrementPage();
+      }
+    });
+  }
+  const galleryItem = document.querySelector('.observer');
+  observer.observe(galleryItem)
+}
+observer();

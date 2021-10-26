@@ -1,3 +1,4 @@
+import pnotify from './pnotify';
 export default class apiService {
   constructor() {
     this.value = '';
@@ -9,11 +10,14 @@ export default class apiService {
     const BASE_URL  = 'https://pixabay.com/api/?image_type=photo?image_type=photo&orientation=horizontal&per_page=12';
     const url = `${BASE_URL}&q=${this.value}&page=${this.page}&key=${KEY}`;
     return await fetch(url)
-      .then(r => r.json()
-      ).then(data => {
-        this.incrementPage();
+      .then(r => {
+        if(r.status === 400) this.onError();
+        return r.json();
+      })
+      .then(data => {
+        this.checkError = true;
         return data;
-    })
+    }).catch(this.onError)
   }
 
   incrementPage(){
@@ -22,5 +26,13 @@ export default class apiService {
 
   resetPage(){
     this.page = 1;
+  }
+
+  onError(message){
+    pnotify({
+      title: 'Error 😱',
+      text: message,
+      delay: 2000,
+    });
   }
 }
